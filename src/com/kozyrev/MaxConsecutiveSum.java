@@ -6,8 +6,8 @@ package com.kozyrev;
 public class MaxConsecutiveSum {
 
     public static void main(String[] args){
-        System.out.println(maxConsecutiveSum(new int[]{1,2,3,-7,10,11,-3}));//22
-        System.out.println(maxConsecutiveSum(new int[]{1,2,3,-5,10,11,-3}));//21
+        System.out.println(maxConsecutiveSum(new int[]{1,2,3,-7,10,11,-3}));//21
+        System.out.println(maxConsecutiveSum(new int[]{1,2,3,-5,10,11,-3}));//22
     }
 
     public static int maxConsecutiveSum(int[] array) {

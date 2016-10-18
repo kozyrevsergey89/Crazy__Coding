@@ -59,6 +59,24 @@ class HasLoop {
         return ret;
     }
 
+    static int[][] rotateMatrixInPlace(int[][] matrix, int n) {
+        for (int i = 0; i < n/2; ++i) {
+            int d = n-2*i;
+            for (int j = i; j < d; ++j) {
+                int temp = matrix[j][i];
+                matrix[j][i] = matrix[d-1-j][i];
+                matrix[d-1-j][i] = matrix[d-1-j][d-1-i];
+                matrix[d-1-j][d-1-i] = matrix[j][d-1-i];
+                matrix[j][d-1-i] = temp;
+            }
+        }
+        return matrix;
+    }
+
+    private static void swap(int i) {
+
+    }
+
 //    void rotate(T (&matrix)[dim][dim])
 //    {
 //        const size_t d = dim-1;
@@ -166,6 +184,7 @@ class HasLoop {
         }
         return root;
     }
+
 
     private static void insert(Node what, Node after) {
         Node temp = after.next;
