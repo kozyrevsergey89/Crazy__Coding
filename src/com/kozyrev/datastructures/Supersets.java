@@ -15,12 +15,12 @@ public class Supersets {
         names.add("2");
         names.add("3");
         names.add("4");
-//        for (List<String> list : getSublists(names)) {
-//            System.out.println();
-//            for (String s : list) {
-//                System.out.print(s + " ");
-//            }
-//        }
+        for (List<String> list : getSublists(names)) {
+            System.out.println();
+            for (String s : list) {
+                System.out.print(s + " ");
+            }
+        }
 
         System.out.println();
         System.out.print("my implementation:");

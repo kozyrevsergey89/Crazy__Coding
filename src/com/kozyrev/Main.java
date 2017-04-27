@@ -12,7 +12,46 @@ public class Main {
 //        testQueue();
 //        testStack();
 //        testArrayStack();
-        testArrayQueue();
+//        testArrayQueue();
+        testBinaryTreeSerializer();
+    }
+
+    private static void testBinaryTreeSerializer() {
+        BinaryTreeSerializer.Node root = new BinaryTreeSerializer.Node();
+        root.val = 777;
+        BinaryTreeSerializer.Node node = root;
+        int i = 0;
+        while (i<10) {
+
+            BinaryTreeSerializer.Node node1 = new BinaryTreeSerializer.Node();
+            node1.val = i++;
+            node.left=node1;
+
+            BinaryTreeSerializer.Node node2 = new BinaryTreeSerializer.Node();
+            node2.val = i++;
+            node.right=node2;
+
+            if (i%4==0){
+                node=node.right;
+            } else {
+                node=node.left;
+            }
+        }
+
+        System.out.println("testBinaryTreeSerializer"+root.val);
+        BinaryTreeSerializer.traverseFromTopToBottom(root);
+
+        Integer[] array = BinaryTreeSerializer.serialize(root);
+        System.out.println("array form start");
+        for (int number : array){
+            System.out.println(""+number);
+        }
+        System.out.println("array form finish");
+
+        System.out.println("Node form again!!!");
+        BinaryTreeSerializer.Node deserialized = BinaryTreeSerializer.deserialize(array);
+        System.out.println(""+deserialized);
+        BinaryTreeSerializer.traverseFromTopToBottom(deserialized);
     }
 
     private static void testArrayQueue() {

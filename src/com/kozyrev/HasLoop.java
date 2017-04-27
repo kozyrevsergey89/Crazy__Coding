@@ -9,8 +9,10 @@ import java.util.*;
 
 class HasLoop {
     public static void main(String[] args) {
-        System.out.println("first case sos: " + isPalindrome("sos"));
-        System.out.println("first case soa: " + isPalindrome("soa"));
+//        System.out.println("first case sos: " + isPalindrome("sos"));
+//        System.out.println("first case soa: " + isPalindrome("soa"));
+
+        System.out.println("match: foobar and foobar: " + isMatch("fooooooooobar", "foo*ba."));
 
     }
 
@@ -60,21 +62,39 @@ class HasLoop {
     }
 
     static int[][] rotateMatrixInPlace(int[][] matrix, int n) {
-        for (int i = 0; i < n/2; ++i) {
-            int d = n-2*i;
+        for (int i = 0; i < n / 2; ++i) {
+            int d = n - 2 * i;
             for (int j = i; j < d; ++j) {
                 int temp = matrix[j][i];
-                matrix[j][i] = matrix[d-1-j][i];
-                matrix[d-1-j][i] = matrix[d-1-j][d-1-i];
-                matrix[d-1-j][d-1-i] = matrix[j][d-1-i];
-                matrix[j][d-1-i] = temp;
+                matrix[j][i] = matrix[d - 1 - j][i];
+                matrix[d - 1 - j][i] = matrix[d - 1 - j][d - 1 - i];
+                matrix[d - 1 - j][d - 1 - i] = matrix[j][d - 1 - i];
+                matrix[j][d - 1 - i] = temp;
             }
         }
         return matrix;
     }
 
-    private static void swap(int i) {
+    public static boolean matchingPattern(String s, String p) {
+        if (s == null || p == null) return false;
+        return matchingPattern(s, p, 0, 0);
+    }
 
+    public static boolean matchingPattern(String s, String p, int i, int pi) {
+        if (i == s.length() - 1 && pi == p.length() - 1) {
+            return true;
+        } else if (i >= s.length() || pi >= p.length()) {
+            return false;
+        }
+        if (pi + 1 < p.length() && p.charAt(pi + 1) != '*') {
+            return s.charAt(i) == p.charAt(pi) && matchingPattern(s, p, ++i, ++pi);
+        } else {
+            while (s.charAt(i) == p.charAt(pi) || (p.charAt(pi) == '.' && i < s.length())) {
+                if (matchingPattern(s, p, i, pi + 2)) return true;
+                i++;
+            }
+        }
+        return matchingPattern(s, p, i, pi + 2);
     }
 
 //    void rotate(T (&matrix)[dim][dim])
@@ -99,10 +119,12 @@ class HasLoop {
     }
 
     static boolean isMatch(String s, String p, int i, int pi) {
-        if (i == s.length() && pi == p.length()) {
+        if (i == s.length() - 1 && pi == p.length() - 1) {
             return true;
+        } else if (i >= s.length() || pi >= p.length()) {
+            return false;
         }
-        if (p.charAt(pi + 1) != '*') {
+        if (pi + 1 < p.length() && p.charAt(pi + 1) != '*') {
             return (p.charAt(pi) == s.charAt(i)) && isMatch(s, p, ++i, ++pi);
         } else {
             while ((p.charAt(pi) == s.charAt(i)) || (p.charAt(pi) == '.' && i < s.length())) {
@@ -117,40 +139,48 @@ class HasLoop {
     void colorBucket(int[][] screen, int fillColor, int x, int y) {
         Queue<Point> queue = new LinkedList<>();
         int firstColor = screen[x][y];
-        queue.add(new Point(x,y));
+        queue.add(new Point(x, y));
         while (!queue.isEmpty()) {
             Point p = queue.remove();
-            if ((y+1<screen[0].length) && screen[p.x][p.y+1] == firstColor) {queue.add(new Point(x, y+1));}
-            if ((x+1<screen.length) && screen[p.x+1][p.y] == firstColor) {queue.add(new Point(x+1, y));}
-            if ((y-1>=0) && screen[p.x][p.y-1] == firstColor) {queue.add(new Point(x, y-1));}
-            if ((x-1>=0) && screen[p.x-1][p.y] == firstColor) {queue.add(new Point(x-1, y));}
+            if ((y + 1 < screen[0].length) && screen[p.x][p.y + 1] == firstColor) {
+                queue.add(new Point(x, y + 1));
+            }
+            if ((x + 1 < screen.length) && screen[p.x + 1][p.y] == firstColor) {
+                queue.add(new Point(x + 1, y));
+            }
+            if ((y - 1 >= 0) && screen[p.x][p.y - 1] == firstColor) {
+                queue.add(new Point(x, y - 1));
+            }
+            if ((x - 1 >= 0) && screen[p.x - 1][p.y] == firstColor) {
+                queue.add(new Point(x - 1, y));
+            }
             screen[p.x][p.y] = fillColor;
 
         }
     }
 
 
-
-    static void fillColor(int[][] img,int x, int y, int color) {
+    static void fillColor(int[][] img, int x, int y, int color) {
         Queue<Point> queue = new LinkedList<>();
-        queue.add(new Point(x,y));
-        while(!queue.isEmpty()) {
+        queue.add(new Point(x, y));
+        while (!queue.isEmpty()) {
             Point p = queue.remove();
-            if (y<img.length && img[x][y+1] == img[x][y]) queue.add(new Point(x,y+1));//check out of bounds
-            if (img[x][y-1] == img[x][y]) queue.add(new Point(x,y-1));
-            if (x<img.length && img[x+1][y] == img[x][y]) queue.add(new Point(x+1,y));//check out of bounds
-            if (img[x-1][y] == img[x][y]) queue.add(new Point(x-1,y));
+            if (y < img.length && img[x][y + 1] == img[x][y]) queue.add(new Point(x, y + 1));//check out of bounds
+            if (img[x][y - 1] == img[x][y]) queue.add(new Point(x, y - 1));
+            if (x < img.length && img[x + 1][y] == img[x][y]) queue.add(new Point(x + 1, y));//check out of bounds
+            if (img[x - 1][y] == img[x][y]) queue.add(new Point(x - 1, y));
             img[p.x][p.y] = color;
         }
     }
+
     static class Point {
         int x;
         int y;
 //        int color;
 
         public Point(int x, int y) {
-            this.x=x;
-            this.y=y;
+            this.x = x;
+            this.y = y;
 //            this.color=color;
         }
     }

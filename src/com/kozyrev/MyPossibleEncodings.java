@@ -8,12 +8,12 @@ import java.util.Stack;
 public class MyPossibleEncodings {
 
     public static void main(String[] args) {
-        System.out.println(""+possibleEncodings(new int[]{1,2}));
+        System.out.println(""+possibleEncodings(new int[]{1,2,3}));
     }
 
     public static int possibleEncodings(int[] numbers){
-//        return possibleEncodings(numbers, numbers.length);
-        return possiblesolutionsIterative(numbers);
+        return possibleEncodings(numbers, numbers.length);
+//        return possiblesolutionsIterative(numbers);
     }
 
     private static int possibleEncodings(int[] numbers, int length) {

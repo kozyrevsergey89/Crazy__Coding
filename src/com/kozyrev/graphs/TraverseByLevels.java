@@ -40,6 +40,8 @@ public class TraverseByLevels {
 //        traverseByLevels(root);
 
         traverseFromBottomToTop(root);
+        System.out.println("------------");
+        traverseFromTopToBottom(root);
     }
 
     private static void traverseByLevels(Node root) {
@@ -91,5 +93,20 @@ public class TraverseByLevels {
             k--;
         }
 
+    }
+
+    private static void traverseFromTopToBottom(Node root) {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        int counter = 1;
+        while (!queue.isEmpty()) {
+            Node n = queue.remove();
+            System.out.print(" " + n.value + " ");
+            counter++;
+            boolean checker = ((counter & (counter - 1)) == 0);
+            if (checker) System.out.print("\n");
+            if (n.left != null) queue.add(n.left);
+            if (n.right != null) queue.add(n.right);
+        }
     }
 }
