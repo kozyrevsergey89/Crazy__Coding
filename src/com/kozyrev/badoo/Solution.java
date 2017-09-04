@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Solution {
 
-    public static void main(String[] args) {
+    public static void main2(String[] args) {
         Scanner in = new Scanner(System.in);
         int[] arr = new int[5];
         for (int arr_i = 0; arr_i < 5; arr_i++) {
@@ -135,6 +135,25 @@ public class Solution {
         return results.size();
     }
 
+
+    public static void main(String[] args) {
+
+
+        String[] strings = new String[]{
+                "7",
+                "1100001",
+                "1110001",
+                "0110001",
+                "0001100",
+                "0001100",
+                "0000010",
+                "0010001"
+
+        };
+
+        int count = zombieCluster(strings);
+        System.out.println(count);
+    }
 
     /**
      *
