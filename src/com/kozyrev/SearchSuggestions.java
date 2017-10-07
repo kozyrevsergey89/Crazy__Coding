@@ -49,6 +49,8 @@ public class SearchSuggestions {
         }
     }
 
+
+
     public static class Trie {
         int value;
         String text;

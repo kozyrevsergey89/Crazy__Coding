@@ -14,6 +14,42 @@ class HasLoop {
 
         System.out.println("match: foobar and foobar: " + isMatch("fooooooooobar", "foo*ba."));
 
+
+        int[][] matrix = new int[][] {
+                {3, 2, 1,11},
+                {7, 8, 9,12},
+                {6, 5, 4,13},
+                {61, 51, 41,131}
+        };
+        for (int i =0; i<matrix.length;i++){
+            System.out.println();
+            for(int j=0; j<matrix.length;j++) {
+                System.out.print(" "+matrix[i][j]);
+            }
+        }
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+//        int[][] rotated = rotateOuterRingMatrix(matrix);
+//        for (int i =0; i<rotated.length;i++){
+//            System.out.println();
+//            for(int j=0; j<rotated.length;j++) {
+//                System.out.print(rotated[i][j]);
+//            }
+//        }
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+        int[][] rotated2 = rotateMatrix(matrix, matrix.length);
+        for (int i =0; i<rotated2.length;i++){
+            System.out.println();
+            for(int j=0; j<rotated2.length;j++) {
+                System.out.print(" "+rotated2[i][j]);
+            }
+        }
     }
 
     static boolean hasLoop(Node node) {
@@ -51,13 +87,11 @@ class HasLoop {
 
     static int[][] rotateMatrix(int[][] matrix, int n) {
         int[][] ret = new int[n][n];
-
         for (int i = 0; i < n; ++i) {
             for (int j = 0; j < n; ++j) {
                 ret[i][j] = matrix[n - j - 1][i];
             }
         }
-
         return ret;
     }
 
