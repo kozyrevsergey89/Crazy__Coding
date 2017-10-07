@@ -19,4 +19,21 @@ public class ReverseLinkedList {
             cur = next;
         }
     }
+
+
+    public static Node reverse(Node node) {
+        Node current = node;
+        Node prev = null;
+        Node next;
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+
+        }
+        return prev;
+    }
+
+
 }
