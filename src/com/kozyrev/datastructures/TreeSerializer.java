@@ -13,6 +13,18 @@ import java.util.*;
  */
 public class TreeSerializer {
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        Set<String> c  =new TreeSet<>();
+        return super.equals(obj);
+    }
+
     public static void main(String[] args) {
         Node n1 = new Node(1, null, null);
         Node n2 = new Node(2, null, null);
@@ -31,7 +43,7 @@ public class TreeSerializer {
         n3.right = n7;
         n4.left = n8;
         n4.right = n9;
-        System.out.println("tree is ready" + n1);
+            System.out.println("tree is ready" + n1);
         Integer[] serialized = serialize(n1);
         System.out.println("array is ready:" + Arrays.toString(serialized));
         Node root = deSerialize(serialized);
