@@ -13,12 +13,6 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
     public BinarySearchTree() {
         data = new ArrayList<>();
-        Map<Character, Integer> map = new HashMap<>();
-        for (Integer num : map.values()) {
-            if (num!=0) {
-
-            }
-        }
     }
 
     public void insert(E item) {

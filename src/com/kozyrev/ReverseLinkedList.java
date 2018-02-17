@@ -8,6 +8,24 @@ public class ReverseLinkedList {
         Node next;
     }
 
+    static Node kthFromEnd(Node root, int k) {
+        if (root==null) {return null;}
+        Node node = root;
+        Node run = root;
+        int i=0;
+        while (i<k){
+            node=node.next;
+            if (node==null) {return null;}
+        }
+
+        while(node.next!=null) {
+            run=run.next;
+            node=node.next;
+        }
+        return run;
+
+    }
+
     static void reverseLinkedList(Node node) {
         Node prev = null;
         Node cur = node;
